@@ -48,7 +48,9 @@ let contractInstance = await deploy.deployContract(web3,
 		.then((contractInstance)=>{return contractInstance;});
 
 console.log(contractInstance.options.address);
+return contractInstance.options.address;
 }
 
 
-run();
+// run();
+module.exports = {run};
