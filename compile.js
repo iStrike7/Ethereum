@@ -59,7 +59,7 @@ function writeOutput(compiled, buildPath) {
 
     for (let contractFileName in compiled.contracts) {
         const contractName = contractFileName.replace('.sol', '');
-        console.log('Writing: ', contractName + '.json');
+        // console.log('Writing: ', contractName + '.json');
         fs.outputJsonSync(
             path.resolve(buildPath, contractName + '.abi'),
             compiled.contracts[contractFileName][contractName].abi
