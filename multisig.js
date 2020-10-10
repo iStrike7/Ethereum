@@ -5,7 +5,7 @@ const path = require('path');
 
 
 async function createMultiSig(web3, data){
-	console.log(data);
+	// console.log(data);
 	let contractFileName = await 'MultiSigWallet.sol';
 
 
@@ -62,7 +62,7 @@ async function submitMultiSigTxn(web3, data){
 }
 
 async function confirmMultiSigTxn(web3, data){
-	console.log(data);
+	// console.log(data);
 
 	const contract = await new web3.eth.Contract(
 						JSON.parse(
@@ -71,7 +71,7 @@ async function confirmMultiSigTxn(web3, data){
 						,
 						data.contract_address
 						);
-	contract.methods.getOwners().call().then((result)=>{console.log(result)});
+	// contract.methods.getOwners().call().then((result)=>{console.log(result)});
 	return contract.methods.confirmTransaction(
 						data.walletTxnId,
 					).send({
@@ -80,7 +80,7 @@ async function confirmMultiSigTxn(web3, data){
 						gasPrice: data.gasPrice,
 					})
 					.then((result)=>{
-								console.log(result);
+								// console.log(result);
 								return result;
 								})
 
@@ -103,7 +103,7 @@ async function executeMultiSigTxn(web3, data){
 						gasPrice: data.gasPrice,
 					})
 					.then((result)=>{
-								console.log(result);
+								// console.log(result);
 								return result;
 								})
 

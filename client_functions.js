@@ -17,7 +17,7 @@ async function createMultiSig(params){
 	.then((res) => {
 	     return res.json()
 	}).then((json) => {
-	console.log(json.options.address)
+	// console.log(json.options.address);
 	return json.options.address});
 	}
 
@@ -41,7 +41,7 @@ async function p2anySendEther(params){
 	     return res.json()
 	}).then((json) => {
 		// console.log(json);
-	console.log(json.transactionHash)
+	// console.log(json.transactionHash);
 	return json.transactionHash});
 	}
 
@@ -60,11 +60,11 @@ async function getBalance(params){
 	.then((res) => {
 	     return res.json()
 	}).then((json) => {
-	  console.log(json.balance)
+	  // console.log(json.balance);
 	return json.balance});
 	}
 
-async function submitMultiSig(params){
+async function submitMultiSigTxn(params){
 	let url ='http://127.0.0.1:8081/MultiSig/submit';
 	let headers = {
 	  "Content-Type": "application/json",
@@ -82,14 +82,14 @@ async function submitMultiSig(params){
 	.then((res) => {
 	     return res.json();
 	})
-	.then((json) => { console.log("submitMultiSig");
+	.then((json) => {
 		// console.log(typeof(json.events.Submission.returnValues.transactionId));
-		// console.log("submitMultiSig: ",json)//.transactionHash)
-		console.log(json.events.Submission.returnValues.transactionId);
+		// console.log("submitMultiSig: ",json)//.transactionHash);
+		// console.log(json.events.Submission.returnValues.transactionId);
 	return json.events.Submission.returnValues.transactionId});
 	}
 
-async function confirmMultiSig(params){
+async function confirmMultiSigTxn(params){
 	let url ='http://127.0.0.1:8081/MultiSig/confirm';
 	let headers = {
 	  "Content-Type": "application/json",
@@ -106,11 +106,11 @@ async function confirmMultiSig(params){
 	.then((res) => {
 	     return res.json()
 	}).then((json) => {
-	  console.log(json.transactionHash)
+	  // console.log(json.transactionHash);
 	return json.transactionHash});
 	}
 
-async function executeMultiSig(params){
+async function executeMultiSigTxn(params){
 	let url ='http://127.0.0.1:8081/MultiSig/execute';
 	let headers = {
 	  "Content-Type": "application/json",
@@ -127,7 +127,7 @@ async function executeMultiSig(params){
 	.then((res) => {
 	     return res.json()
 	}).then((json) => {
-	  console.log(json.transactionHash)
+	  // console.log(json.transactionHash);
 	return json.transactionHash});
 	}
 
@@ -135,7 +135,7 @@ module.exports = 	{
 			createMultiSig,
 			p2anySendEther,
 			getBalance,
-			submitMultiSig,
-			confirmMultiSig,
-			executeMultiSig
+			submitMultiSigTxn,
+			confirmMultiSigTxn,
+			executeMultiSigTxn
 			}
