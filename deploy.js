@@ -16,7 +16,7 @@ function setupContract(web3, contract_details,contract_fromAccount){
 		payload : {
 				data: contract_details.bytecode
 				,
-				arguments: [["0x79502D50Ef8BfF72078e0CF46463CE9cCfDb5bF2"], 1]
+				arguments: contract_details.arguments
 			},
 
 		parameters : {

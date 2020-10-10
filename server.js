@@ -1,5 +1,4 @@
 const express = require('express');
-const fs = require("fs");
 const multisig = require("./multisig.js");
 const send_ether = require("./send_ether.js");
 const get_balance = require("./get_balance.js");
@@ -10,7 +9,6 @@ const Web3 = require('web3');
 if (typeof web3 !== 'undefined') {
          web3 = await new Web3(web3.currentProvider);
      } else {
-         // set the provider you want from Web3.providers
          web3 = await new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
      }
 
@@ -19,32 +17,41 @@ const jsonParser = bodyParser.json({strict: false});
 
 app.post('/MultiSig/create', jsonParser, function (req, res) {
 	// console.log(req.body);
-	multisig.createMultiSig(web3,req.body).then((result)=>{res.send(JSON.stringify(result))});
+	multisig.createMultiSig(web3,req.body).then((result)=>{res.send(JSON.stringify(result))})
+							.catch((e)=>{res.send(JSON.stringify(e));});
 })
 
 app.post('/MultiSig/submit', jsonParser, function (req, res) {
 	// console.log(req.body);
-	multisig.submitMultiSigTxn(req.body).then((result)=>{res.send(JSON.stringify(result))});
+	multisig.submitMultiSigTxn(web3, req.body).then((result)=>{res.send(JSON.stringify(result))})
+							.catch((e)=>{res.send(JSON.stringify(e));});
 })
-//
-// app.post('/MultiSig/confirm', jsonParser, function (req, res) {
-// 	// console.log(req.body);
-// 	multisig.confirmMultiSigTxn(req.body).then((result)=>{res.send(JSON.stringify(result))});
-// })
-//
-// app.post('/MultiSig/execute', jsonParser, function (req, res) {
-// 	// console.log(req.body);
-// 	multisig.executeMultiSigTxn(req.body).then((result)=>{res.send(JSON.stringify(result))});
-// })
+
+app.post('/MultiSig/confirm', jsonParser, function (req, res) {
+	// console.log(req.body);
+	multisig.confirmMultiSigTxn(web3, req.body).then((result)=>{res.send(JSON.stringify(result))})
+							.catch((e)=>{res.send(JSON.stringify(e));});
+})
+
+app.post('/MultiSig/execute', jsonParser, function (req, res) {
+	// console.log(req.body);
+	multisig.executeMultiSigTxn(web3, req.body).then((result)=>{res.send(JSON.stringify(result))})
+							.catch((e)=>{
+								// console.log(e);
+								res.send(JSON.stringify(e));})
+							;
+})
 
 app.post('/SendEther/p2any', jsonParser, function (req, res) {
 	// console.log(req.body);
-	send_ether.p2any(web3, req.body).then((result)=>{res.send(JSON.stringify(result))});
+	send_ether.p2any(web3, req.body).then((result)=>{res.send(JSON.stringify(result))})
+							.catch((e)=>{res.send(JSON.stringify(e));});
 })
 
 app.post('/GetBalance', jsonParser, function (req, res) {
 	// console.log(req.body);
-	get_balance.getBalance(web3, req.body).then((result)=>{res.send(JSON.stringify(result))});
+	get_balance.getBalance(web3, req.body).then((result)=>{res.send(JSON.stringify(result))})
+							.catch((e)=>{res.send(JSON.stringify(e));});
 })
 
 
