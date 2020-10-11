@@ -1,9 +1,9 @@
-const express = require('express');
 const multisig = require("./multisig.js");
 const send_ether = require("./send_ether.js");
 const get_balance = require("./get_balance.js");
 const bodyParser = require('body-parser');
 const Web3 = require('web3');
+const express = require('express');
 
 (async()=>{
 if (typeof web3 !== 'undefined') {

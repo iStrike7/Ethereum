@@ -15,7 +15,7 @@ function createConfiguration(contractFileName) {
         language: 'Solidity',
         sources: {
             [contractFileName]: {
-                content: fs.readFileSync(path.resolve(__dirname, 'contracts', contractFileName), 'utf8')
+                content: fs.readFileSync(path.resolve(__dirname, '../', 'contracts', contractFileName), 'utf8')
             },
         },
         settings: {
@@ -41,7 +41,7 @@ function compileSources(config) {
 
 function getImports(dependency) {
     console.log('Searching for dependency: ', dependency);
-	return {contents: fs.readFileSync(path.resolve(__dirname, 'contracts', dependency), 'utf8')};
+	return {contents: fs.readFileSync(path.resolve(__dirname, '../', 'contracts', dependency), 'utf8')};
     }
 
 function errorHandling(compiledSources) {

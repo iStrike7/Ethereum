@@ -36,7 +36,7 @@ async function submitMultiSigTxn(web3, data){
 	// console.log(data);
 	const contract = await new web3.eth.Contract(
 						JSON.parse(
-						fs.readFileSync(path.resolve(__dirname, 'build', 'MultiSigWallet.abi'), 'utf8')
+						fs.readFileSync(path.resolve(__dirname, '../','build', 'MultiSigWallet.abi'), 'utf8')
 						)
 						,
 						data.contract_address
