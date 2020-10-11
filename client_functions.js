@@ -86,6 +86,9 @@ async function submitMultiSigTxn(params){
 		// console.log(typeof(json.events.Submission.returnValues.transactionId));
 		// console.log("submitMultiSig: ",json)//.transactionHash);
 		// console.log(json.events.Submission.returnValues.transactionId);
+		// console.log(json.events.Submission.raw);
+		// console.log(json);
+		// console.log(json.events.Submission.raw);
 	return json.events.Submission.returnValues.transactionId});
 	}
 
