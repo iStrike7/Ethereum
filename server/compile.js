@@ -3,7 +3,7 @@ const solc = require('solc');
 const fs = require('fs-extra');
 
 function compilingPreperations() {
-    const buildPath = path.resolve(__dirname, 'build');
+    const buildPath = path.resolve(__dirname, '../','build');
     fs.removeSync(buildPath);
     return buildPath;
 }
