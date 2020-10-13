@@ -160,7 +160,7 @@ await client_functions.getBalance({address: multiSig_contractAddress})
 		return web3.utils.fromWei(balance_in_wei, 'ether');
 	})
 	.then((balance_in_ether)=>{
-		console.log("Balance of ",i,"\n",multiSig_contractAddress,"\n",
+		console.log("Balance of MultiSigWallet","\n",multiSig_contractAddress,"\n",
 		balance_in_ether, "ether"
 		,"\n\n"
 		);
