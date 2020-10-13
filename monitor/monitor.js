@@ -39,26 +39,27 @@ web3.eth.subscribe('newBlockHeaders')
 								to_monitored_bool=false;
 
 								if (item.value !== '0'){
-
 									if(!!item.from)
 									{
 										if(bs(monitored_addresses, Buffer.from(item.from.slice(2),'hex'),
 											 function(element, needle) {
 												 return Buffer.compare(element,needle);
 											  })
-											>0
+											>=0
 										){
 											from_monitored_bool = true;
+
 										}
 										else if(!!item.to) {
 											if(bs(monitored_addresses, Buffer.from(item.to.slice(2),'hex'),
 												 function(element, needle) {
 													 return Buffer.compare(element,needle);
 												  })
-												>0
+												>=0
 											){
 												to_monitored_bool = true;
 											}
+
 										}
 									}
 								}
@@ -73,14 +74,15 @@ web3.eth.subscribe('newBlockHeaders')
 												value: item.value
 											}
 										)
+										console.log({
+											txnHash : item.hash,
+											from: item.from,
+											to: item.to,
+											value: item.value
+										})
 									}
 							})
 
-						})
-						.then(()=>{
-							if (blockHeader.number==17){
-								console.log(referenced_etherTxns);
-							}
 						})
 
 					}
